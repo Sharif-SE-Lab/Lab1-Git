@@ -43,3 +43,33 @@ def average_length_of_all_queue(packets: List[Packet], simulation_time: float, p
         return average_queue_length(packets, simulation_time)
 
 
+def average_time_in_all_queue(packets: List[Packet], simulation_time: float) -> float:
+    total_time_in_queue: float = 0
+    total_packets = 0
+    for packet in packets:
+        if packet.dropped:
+            continue
+        elif not packet.service_time:
+            total_time_in_queue += simulation_time - packet.entry_time
+            total_packets += 1
+        else:
+            total_time_in_queue += packet.execution_start_time - packet.entry_time
+            total_packets += 1
+    return total_time_in_queue / total_packets
+
+
+def average_time_in_queue(packets: List[Packet], simulation_time: float, priority_enum) -> float:
+    total_time_in_queue: float = 0
+    total_packets = 0
+    for packet in packets:
+        if packet.dropped or not packet.priority.name == priority_enum.name:
+            continue
+        if not packet.service_time:
+            total_time_in_queue += simulation_time - packet.entry_time
+            total_packets += 1
+        else:
+            total_time_in_queue += packet.execution_start_time - packet.entry_time
+            total_packets += 1
+    return total_time_in_queue / total_packets
+
+
