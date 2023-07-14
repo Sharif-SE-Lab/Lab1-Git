@@ -61,6 +61,7 @@ class Router:
                 else:
                     self.insert_packet(self.packets.pop(0))
                     time = packet_entry_time
+                    print("state 0, popped")
             else:
                 self.insert_packet(self.packets.pop(0))
                 time = packet_entry_time
