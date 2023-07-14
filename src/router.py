@@ -2,6 +2,7 @@ from typing import List, Optional
 
 from src.generator import generate_exponential_variable
 from src.host import Packet
+from src.queue import Queue
 
 
 class Core:
@@ -61,6 +62,7 @@ class Router:
                 else:
                     self.insert_packet(self.packets.pop(0))
                     time = packet_entry_time
+                    print(packet_entry_time)
             else:
                 self.insert_packet(self.packets.pop(0))
                 time = packet_entry_time
