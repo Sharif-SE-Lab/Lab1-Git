@@ -77,3 +77,6 @@ class WRRQueue(Queue):
         if popped_packet:
             self.sent_packet += 1
         return popped_packet
+
+
+service_policy_dict = {"FIFO": FIFOQueue, "WRR": WRRQueue, "NPPS": PriorityQueue}
